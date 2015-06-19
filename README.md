@@ -38,7 +38,7 @@ There's two ways of approaching this:
 All code is in the `src/main/java/com/github/seeemilyplay/diydistdb`
 directory. There are three classes:
 
-1. `Thing.java`: A POJO representing the Thing's stored in the db.
+1. `Thing.java`: A POJO representing the Things stored in the db.
 2. `Node.java`: A wrapper around the node's REST API that deals with the HTTP calls for you.
 3. `Main.java`: A Main method that demonstrates how to use the
    other classes, and has placeholders for where to put your
