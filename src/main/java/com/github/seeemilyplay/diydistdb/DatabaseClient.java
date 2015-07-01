@@ -10,23 +10,6 @@ import java.util.List;
  * A Main method you can use as a stub.
  */
 public class DatabaseClient {
-    public static void main( String[] args ) throws Exception {
-        Logger logger = LogManager.getLogger(DatabaseClient.class);
-        Node[] nodes = new Node[]{
-                new Node("http://localhost:8080"),
-                new Node("http://localhost:8081"),
-                new Node("http://localhost:8082")
-        };
-        DatabaseClient databaseClient = new DatabaseClient(logger, new ReturnMostRecent(), nodes, 2, 2);
-
-        databaseClient.write(new Thing(3, "foo"));
-        databaseClient.write(new Thing(7, "bar"));
-        Thing thing3 = databaseClient.read(3);
-        Thing thing7 = databaseClient.read(7);
-        System.out.println(thing3);
-        System.out.println(thing7);
-    }
-
     private final Logger logger;
     private final Resolver resolver;
     private final Node[] nodes;
