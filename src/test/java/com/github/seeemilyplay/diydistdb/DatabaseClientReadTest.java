@@ -32,7 +32,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatReturns(thing);
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
         assertThat(databaseClient.read(ANY_ID), is(thing));
     }
@@ -44,7 +44,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
         assertThat(databaseClient.read(ANY_ID), is(thing));
     }
@@ -56,7 +56,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
         databaseClient.read(ANY_ID);
     }
 

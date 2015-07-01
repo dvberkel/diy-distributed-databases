@@ -11,7 +11,7 @@ public class Runner {
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        DatabaseClient databaseClient = new DatabaseClient(logger, new ReturnMostRecent(), nodes, 2, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, new DontRepair(), new ReturnMostRecent(), nodes, 2, 2);
 
         databaseClient.write(new Thing(3, "foo"));
         databaseClient.write(new Thing(7, "bar"));

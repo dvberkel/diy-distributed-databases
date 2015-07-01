@@ -11,13 +11,15 @@ import java.util.List;
  */
 public class DatabaseClient {
     private final Logger logger;
+    private final Repairer repairer;
     private final Resolver resolver;
     private final Node[] nodes;
     private final int writeConsistency;
     private final int readConsistency;
 
-    public DatabaseClient(Logger logger, Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
+    public DatabaseClient(Logger logger, Repairer repairer, Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
         this.logger = logger;
+        this.repairer = repairer;
         this.resolver = resolver;
         this.nodes = nodes;
         this.writeConsistency = writeConsistency;
@@ -57,6 +59,8 @@ public class DatabaseClient {
         if (successCount < readConsistency) {
             throw new Exception(String.format("Unable to successfully read from enough nodes. Read from %d nodes", successCount));
         }
-        return resolver.resolve(results);
+        Thing result = resolver.resolve(results);
+        repairer.repair(nodes, result);
+        return result;
     }
 }

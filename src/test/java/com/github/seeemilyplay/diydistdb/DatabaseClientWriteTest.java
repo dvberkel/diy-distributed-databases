@@ -29,7 +29,7 @@ public class DatabaseClientWriteTest {
         Node node2 = mockedNodeThatWrites();
         Node node3 = mockedNodeThatWrites();
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
         databaseClient.write(ANY_THING);
 
         verify(node1).putThing(ANY_THING);
@@ -44,7 +44,7 @@ public class DatabaseClientWriteTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatWrites();
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
         databaseClient.write(ANY_THING);
     }
 
