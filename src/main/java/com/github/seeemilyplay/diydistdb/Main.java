@@ -46,6 +46,7 @@ public class Main {
 
     public Thing read(String[] nodeUrls, int id) throws Exception {
         //todo: only works with one node, need to make distributed!
-        return Node.getThing(nodeUrls[0], id);
+        Node node = new Node(nodeUrls[0]);
+        return node.getThing(id);
     }
 }

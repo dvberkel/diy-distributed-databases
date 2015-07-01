@@ -23,7 +23,7 @@ public class Node {
         this.url = url;
     }
 
-    public static Thing getThing(String url, int id) throws Exception {
+    public Thing getThing(int id) throws Exception {
         String endpoint = url + "/things/" + id;
         ClientRequest req = new ClientRequest(endpoint);
         req.accept(MediaType.APPLICATION_JSON);
