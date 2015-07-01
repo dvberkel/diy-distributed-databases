@@ -10,23 +10,25 @@ public class Main {
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        Main main = new Main(2);
+        Main main = new Main(nodes, 2);
 
-        main.write(nodes, new Thing(3, "foo"));
-        main.write(nodes, new Thing(7, "bar"));
-        Thing thing3 = main.read(nodes, 3);
-        Thing thing7 = main.read(nodes, 7);
+        main.write(new Thing(3, "foo"));
+        main.write(new Thing(7, "bar"));
+        Thing thing3 = main.read(3);
+        Thing thing7 = main.read(7);
         System.out.println(thing3);
         System.out.println(thing7);
     }
 
+    private final Node[] nodes;
     private final int writeConsistency;
 
-    public Main(int writeConsistency) {
+    public Main(Node[] nodes, int writeConsistency) {
+        this.nodes = nodes;
         this.writeConsistency = writeConsistency;
     }
 
-    public void write(Node[] nodes, Thing thing) throws Exception {
+    public void write(Thing thing) throws Exception {
         int successCount = 0;
         for(Node node: nodes) {
             try {
@@ -43,7 +45,7 @@ public class Main {
     }
 
 
-    public Thing read(Node[] nodes, int id) throws Exception {
+    public Thing read(int id) throws Exception {
         //todo: only works with one node, need to make distributed!
         return nodes[0].getThing(id);
     }
