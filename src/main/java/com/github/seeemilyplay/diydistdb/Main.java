@@ -13,7 +13,7 @@ public class Main {
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        Main main = new Main(nodes, 2, 2);
+        Main main = new Main(new ReturnFirst(), nodes, 2, 2);
 
         main.write(new Thing(3, "foo"));
         main.write(new Thing(7, "bar"));
@@ -23,11 +23,13 @@ public class Main {
         System.out.println(thing7);
     }
 
+    private final Resolver resolver;
     private final Node[] nodes;
     private final int writeConsistency;
     private final int readConsistency;
 
-    public Main(Node[] nodes, int writeConsistency, int readConsistency) {
+    public Main(Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
+        this.resolver = resolver;
         this.nodes = nodes;
         this.writeConsistency = writeConsistency;
         this.readConsistency = readConsistency;
@@ -67,6 +69,6 @@ public class Main {
         if (successCount < readConsistency) {
             throw new Exception(String.format("Unable to successfully read from enough nodes. Read from %d nodes", successCount));
         }
-        return results.get(0);
+        return resolver.resolve(results);
     }
 }
