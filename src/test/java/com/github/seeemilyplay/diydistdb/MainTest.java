@@ -30,7 +30,7 @@ public class MainTest {
     }
 
     @Test
-    public void shouldSuccessfullyReadThingWithOneOfThreesNodesDownAndReadConsistencyTwo() throws Exception {
+    public void shouldSuccessfullyReadThingWithOneOfThreeNodesDownAndReadConsistencyTwo() throws Exception {
         Thing thing = new Thing(1, "foo", 0L);
         Node node1 = mockedNodeThatReturns(thing);
         Node node2 = mockedNodeThatThrowsException();
