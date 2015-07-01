@@ -65,6 +65,9 @@ public class Main {
                 System.out.printf("Could not read thing with %d from %s\n", id, node.getUrl());
             }
         }
+        if (successCount < readConsistency) {
+            throw new Exception(String.format("Unable to successfully read from enough nodes. Read from %d nodes", successCount));
+        }
         return results.get(0);
     }
 }
