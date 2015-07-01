@@ -1,27 +1,18 @@
 package com.github.seeemilyplay.diydistdb;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class DatabaseClientRepairTest {
     public static final int ANY_ID = 1;
     private ReturnFirst resolver;
-    private Logger logger;
 
     @Before
     public void createAResolver() {
         resolver = new ReturnFirst();
-    }
-
-    @Before
-    public void createLogger() {
-        logger = LogManager.getLogger(DatabaseClientReadTest.class);
     }
 
     @Test
@@ -30,7 +21,7 @@ public class DatabaseClientRepairTest {
         Repairer repairer = mock(Repairer.class);
         Node node = mockedNodeThatReturns(thing);
         Node[] nodes = {node};
-        DatabaseClient client = new DatabaseClient(logger, repairer, resolver, nodes, 3, 1);
+        DatabaseClient client = new DatabaseClient(mock(Logger.class), repairer, resolver, nodes, 3, 1);
 
         client.read(ANY_ID);
 

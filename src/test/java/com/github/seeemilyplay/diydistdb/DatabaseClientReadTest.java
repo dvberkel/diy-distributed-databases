@@ -1,6 +1,5 @@
 package com.github.seeemilyplay.diydistdb;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +12,10 @@ import static org.mockito.Mockito.when;
 public class DatabaseClientReadTest {
     public static final int ANY_ID = 1;
     private ReturnFirst resolver;
-    private Logger logger;
 
     @Before
     public void createAResolver() {
         resolver = new ReturnFirst();
-    }
-
-    @Before
-    public void createLogger() {
-        logger = LogManager.getLogger(DatabaseClientReadTest.class);
     }
 
     @Test
@@ -32,7 +25,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatReturns(thing);
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(mock(Logger.class), mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
         assertThat(databaseClient.read(ANY_ID), is(thing));
     }
@@ -44,7 +37,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(mock(Logger.class), mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
         assertThat(databaseClient.read(ANY_ID), is(thing));
     }
@@ -56,7 +49,7 @@ public class DatabaseClientReadTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        DatabaseClient databaseClient = new DatabaseClient(logger, mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(mock(Logger.class), mock(Repairer.class), resolver, new Node[]{ node1, node2, node3 }, 3, 2);
         databaseClient.read(ANY_ID);
     }
 
