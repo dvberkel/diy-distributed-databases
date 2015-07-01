@@ -1,5 +1,6 @@
 package com.github.seeemilyplay.diydistdb;
 
+import com.github.seeemilyplay.diydistdb.connection.Node;
 import com.github.seeemilyplay.diydistdb.repair.Repairer;
 import com.github.seeemilyplay.diydistdb.resolve.Resolver;
 import org.apache.logging.log4j.Logger;
