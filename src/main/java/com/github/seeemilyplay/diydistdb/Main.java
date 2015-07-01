@@ -1,7 +1,5 @@
 package com.github.seeemilyplay.diydistdb;
 
-import java.util.List;
-
 /**
  * A Main method you can use as a stub.
  */
@@ -32,7 +30,8 @@ public class Main {
         int successCount = 0;
         for(String nodeUrl: nodeUrls) {
             try {
-                Node.putThing(nodeUrl, thing);
+                Node node = new Node(nodeUrl);
+                node.putThing(thing);
                 successCount++;
             } catch(Exception e) {
                 System.out.printf("Could not write thing %s to %s\n", thing, nodeUrl);

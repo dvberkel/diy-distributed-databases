@@ -16,6 +16,13 @@ public class Node {
         instance.registerProvider(ResteasyJacksonProvider.class);
     }
 
+    private final String url;
+
+    public Node(String url) {
+
+        this.url = url;
+    }
+
     public static Thing getThing(String url, int id) throws Exception {
         String endpoint = url + "/things/" + id;
         ClientRequest req = new ClientRequest(endpoint);
@@ -24,7 +31,7 @@ public class Node {
         return res.getEntity();
     }
 
-    public static Thing putThing(String url, Thing thing) throws Exception {
+    public Thing putThing(Thing thing) throws Exception {
         String endpoint = url + "/things";
         ClientRequest req = new ClientRequest(endpoint);
         req.body(MediaType.APPLICATION_JSON, thing);
