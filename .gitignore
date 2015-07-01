@@ -1,3 +1,4 @@
 target
 .idea
 diy-dist-db.iml
+/db.log
