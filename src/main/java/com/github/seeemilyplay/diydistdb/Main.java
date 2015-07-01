@@ -1,5 +1,8 @@
 package com.github.seeemilyplay.diydistdb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A Main method you can use as a stub.
  */
@@ -10,7 +13,7 @@ public class Main {
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        Main main = new Main(nodes, 2);
+        Main main = new Main(nodes, 2, 2);
 
         main.write(new Thing(3, "foo"));
         main.write(new Thing(7, "bar"));
@@ -22,10 +25,12 @@ public class Main {
 
     private final Node[] nodes;
     private final int writeConsistency;
+    private final int readConsistency;
 
-    public Main(Node[] nodes, int writeConsistency) {
+    public Main(Node[] nodes, int writeConsistency, int readConsistency) {
         this.nodes = nodes;
         this.writeConsistency = writeConsistency;
+        this.readConsistency = readConsistency;
     }
 
     public void write(Thing thing) throws Exception {
@@ -47,6 +52,17 @@ public class Main {
 
     public Thing read(int id) throws Exception {
         //todo: only works with one node, need to make distributed!
-        return nodes[0].getThing(id);
+        int succesCount = 0;
+        List<Thing> results = new ArrayList<Thing>();
+        for (Node node: nodes) {
+            try {
+                Thing thing = node.getThing(id);
+                results.add(thing);
+                succesCount++;
+            } catch(Exception e) {
+                System.out.printf("Could not read thing with %d from %s\n", id, node.getUrl());
+            }
+        }
+        return results.get(0);
     }
 }
