@@ -13,7 +13,7 @@ public class Main {
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        Main main = new Main(new ReturnFirst(), nodes, 2, 2);
+        Main main = new Main(new ReturnMostRecent(), nodes, 2, 2);
 
         main.write(new Thing(3, "foo"));
         main.write(new Thing(7, "bar"));
