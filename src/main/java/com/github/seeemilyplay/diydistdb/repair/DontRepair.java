@@ -1,4 +1,7 @@
-package com.github.seeemilyplay.diydistdb;
+package com.github.seeemilyplay.diydistdb.repair;
+
+import com.github.seeemilyplay.diydistdb.Node;
+import com.github.seeemilyplay.diydistdb.Thing;
 
 public class DontRepair implements Repairer {
     @Override

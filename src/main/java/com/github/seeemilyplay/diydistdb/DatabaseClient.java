@@ -1,6 +1,6 @@
 package com.github.seeemilyplay.diydistdb;
 
-import org.apache.logging.log4j.LogManager;
+import com.github.seeemilyplay.diydistdb.repair.Repairer;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;

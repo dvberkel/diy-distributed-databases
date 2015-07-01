@@ -1,5 +1,6 @@
 package com.github.seeemilyplay.diydistdb;
 
+import com.github.seeemilyplay.diydistdb.repair.Repairer;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;

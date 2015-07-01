@@ -1,7 +1,7 @@
 package com.github.seeemilyplay.diydistdb;
 
+import com.github.seeemilyplay.diydistdb.repair.AlwaysRepair;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Runner {
     public static void main( String[] args ) throws Exception {

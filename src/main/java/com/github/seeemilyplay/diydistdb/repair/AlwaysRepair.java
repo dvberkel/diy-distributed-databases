@@ -1,5 +1,7 @@
-package com.github.seeemilyplay.diydistdb;
+package com.github.seeemilyplay.diydistdb.repair;
 
+import com.github.seeemilyplay.diydistdb.Node;
+import com.github.seeemilyplay.diydistdb.Thing;
 import org.apache.logging.log4j.Logger;
 
 public class AlwaysRepair implements Repairer {

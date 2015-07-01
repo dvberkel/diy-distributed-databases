@@ -1,5 +1,9 @@
-package com.github.seeemilyplay.diydistdb;
+package com.github.seeemilyplay.diydistdb.repair;
 
+import com.github.seeemilyplay.diydistdb.Node;
+import com.github.seeemilyplay.diydistdb.Thing;
+import com.github.seeemilyplay.diydistdb.repair.AlwaysRepair;
+import com.github.seeemilyplay.diydistdb.repair.Repairer;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
