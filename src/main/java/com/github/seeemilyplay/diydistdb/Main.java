@@ -51,7 +51,6 @@ public class Main {
 
 
     public Thing read(int id) throws Exception {
-        //todo: only works with one node, need to make distributed!
         int successCount = 0;
         List<Thing> results = new ArrayList<Thing>();
         int nodeIndex = 0;
