@@ -1,4 +1,7 @@
-package com.github.seeemilyplay.diydistdb;
+package com.github.seeemilyplay.diydistdb.resolve;
+
+import com.github.seeemilyplay.diydistdb.Thing;
+import com.github.seeemilyplay.diydistdb.resolve.Resolver;
 
 import java.util.List;
 
