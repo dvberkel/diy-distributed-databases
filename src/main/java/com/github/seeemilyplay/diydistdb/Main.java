@@ -45,7 +45,7 @@ public class Main {
             }
         }
         if (successCount < writeConsistency) {
-            throw new Exception(String.format("Unable to succesfully write to enough nodes. Wrote to %d nodes", successCount));
+            throw new Exception(String.format("Unable to successfully write to enough nodes. Wrote to %d nodes", successCount));
         }
     }
 
