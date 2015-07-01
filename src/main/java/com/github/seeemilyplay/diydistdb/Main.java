@@ -7,7 +7,11 @@ import java.util.List;
  */
 public class Main {
     public static void main( String[] args ) throws Exception {
-        String[] nodeUrls = new String[]{"http://localhost:8080"};
+        String[] nodeUrls = new String[]{
+                "http://localhost:8080",
+                "http://localhost:8081",
+                "http://localhost:8082"
+        };
         write(nodeUrls, new Thing(3, "foo"));
         write(nodeUrls, new Thing(7, "bar"));
         Thing thing3 = read(nodeUrls, 3);
@@ -16,9 +20,23 @@ public class Main {
         System.out.println(thing7);
     }
 
+
     public static void write(String[] nodeUrls, Thing thing) throws Exception {
         //todo: only works with one node, need to make distributed!
-        Node.putThing(nodeUrls[0], thing);
+        int successCount = 0;
+        int writeConsistency = 2;
+        for(String nodeUrl: nodeUrls) {
+            try {
+                Node.putThing(nodeUrl, thing);
+                successCount++;
+            } catch(Exception e) {
+                System.out.printf("Could not write thing %s to %s\n", thing, nodeUrl);
+
+            }
+        }
+        if (successCount < writeConsistency) {
+            throw new Exception(String.format("Unable to succesfully write to enough nodes. Wrote to %d nodes", successCount));
+        }
     }
 
     public static Thing read(String[] nodeUrls, int id) throws Exception {
