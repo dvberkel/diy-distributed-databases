@@ -1,9 +1,8 @@
 package com.github.seeemilyplay.diydistdb.connection;
 
-import java.util.List;
 import javax.ws.rs.core.MediaType;
 
-import com.github.seeemilyplay.diydistdb.Thing;
+import com.github.seeemilyplay.diydistdb.model.Thing;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.plugins.providers.jackson.ResteasyJacksonProvider;

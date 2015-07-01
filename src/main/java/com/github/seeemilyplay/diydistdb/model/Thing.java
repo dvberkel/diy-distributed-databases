@@ -1,4 +1,4 @@
-package com.github.seeemilyplay.diydistdb;
+package com.github.seeemilyplay.diydistdb.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.ObjectMapper;

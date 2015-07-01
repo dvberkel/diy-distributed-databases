@@ -1,6 +1,7 @@
 package com.github.seeemilyplay.diydistdb;
 
 import com.github.seeemilyplay.diydistdb.connection.Node;
+import com.github.seeemilyplay.diydistdb.model.Thing;
 import com.github.seeemilyplay.diydistdb.repair.AlwaysRepair;
 import com.github.seeemilyplay.diydistdb.resolve.ReturnMostRecent;
 import org.apache.logging.log4j.LogManager;

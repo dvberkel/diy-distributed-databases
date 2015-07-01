@@ -1,8 +1,6 @@
 package com.github.seeemilyplay.diydistdb.resolve;
 
-import com.github.seeemilyplay.diydistdb.Thing;
-import com.github.seeemilyplay.diydistdb.resolve.Resolver;
-import com.github.seeemilyplay.diydistdb.resolve.ReturnMostRecent;
+import com.github.seeemilyplay.diydistdb.model.Thing;
 import org.junit.Test;
 
 import java.util.Arrays;
