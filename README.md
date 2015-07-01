@@ -1,3 +1,6 @@
+* [Slides][slides]
+* [Node][node]
+
 Part of the SPA 2015 Distributed Databases session.
 Start here if you'd like to do the workshop in Java.
 This project will set you up with all the boring
@@ -34,7 +37,7 @@ There's two ways of approaching this:
    in another project. Perhaps you want to write Clojure code
    for example.
 
-## What's here 
+## What's here
 All code is in the `src/main/java/com/github/seeemilyplay/diydistdb`
 directory. There are three classes:
 
@@ -43,3 +46,6 @@ directory. There are three classes:
 3. `Main.java`: A Main method that demonstrates how to use the
    other classes, and has placeholders for where to put your
    own code.
+
+[slides]: http://bit.ly/diy-dist-db
+[node]: http://bit.ly/dist-db-downloads
