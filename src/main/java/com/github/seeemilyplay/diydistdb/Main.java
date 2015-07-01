@@ -52,13 +52,15 @@ public class Main {
 
     public Thing read(int id) throws Exception {
         //todo: only works with one node, need to make distributed!
-        int succesCount = 0;
+        int successCount = 0;
         List<Thing> results = new ArrayList<Thing>();
-        for (Node node: nodes) {
+        int nodeIndex = 0;
+        while (nodeIndex < nodes.length && successCount < readConsistency) {
+            Node node = nodes[nodeIndex++];
             try {
                 Thing thing = node.getThing(id);
                 results.add(thing);
-                succesCount++;
+                successCount++;
             } catch(Exception e) {
                 System.out.printf("Could not read thing with %d from %s\n", id, node.getUrl());
             }
