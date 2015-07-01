@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class DatabaseClientTest {
+public class DatabaseClientReadTest {
     public static final int ANY_ID = 1;
     private ReturnFirst resolver;
 
