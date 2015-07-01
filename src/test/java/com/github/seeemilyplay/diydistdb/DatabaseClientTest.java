@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MainTest {
+public class DatabaseClientTest {
     public static final int ANY_ID = 1;
     private ReturnFirst resolver;
 
@@ -24,9 +24,9 @@ public class MainTest {
         Node node2 = mockedNodeThatReturns(thing);
         Node node3 = mockedNodeThatReturns(thing);
 
-        Main main = new Main(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
-        assertThat(main.read(ANY_ID), is(thing));
+        assertThat(databaseClient.read(ANY_ID), is(thing));
     }
 
     @Test
@@ -36,9 +36,9 @@ public class MainTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        Main main = new Main(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        DatabaseClient databaseClient = new DatabaseClient(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
 
-        assertThat(main.read(ANY_ID), is(thing));
+        assertThat(databaseClient.read(ANY_ID), is(thing));
     }
 
     @Test(expected = Exception.class)
@@ -48,8 +48,8 @@ public class MainTest {
         Node node2 = mockedNodeThatThrowsException();
         Node node3 = mockedNodeThatReturns(thing);
 
-        Main main = new Main(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
-        main.read(ANY_ID);
+        DatabaseClient databaseClient = new DatabaseClient(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+        databaseClient.read(ANY_ID);
     }
 
     private Node mockedNodeThatReturns(Thing thing) throws Exception {

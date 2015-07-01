@@ -6,19 +6,19 @@ import java.util.List;
 /**
  * A Main method you can use as a stub.
  */
-public class Main {
+public class DatabaseClient {
     public static void main( String[] args ) throws Exception {
         Node[] nodes = new Node[]{
                 new Node("http://localhost:8080"),
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        Main main = new Main(new ReturnMostRecent(), nodes, 2, 2);
+        DatabaseClient databaseClient = new DatabaseClient(new ReturnMostRecent(), nodes, 2, 2);
 
-        main.write(new Thing(3, "foo"));
-        main.write(new Thing(7, "bar"));
-        Thing thing3 = main.read(3);
-        Thing thing7 = main.read(7);
+        databaseClient.write(new Thing(3, "foo"));
+        databaseClient.write(new Thing(7, "bar"));
+        Thing thing3 = databaseClient.read(3);
+        Thing thing7 = databaseClient.read(7);
         System.out.println(thing3);
         System.out.println(thing7);
     }
@@ -28,7 +28,7 @@ public class Main {
     private final int writeConsistency;
     private final int readConsistency;
 
-    public Main(Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
+    public DatabaseClient(Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
         this.resolver = resolver;
         this.nodes = nodes;
         this.writeConsistency = writeConsistency;
