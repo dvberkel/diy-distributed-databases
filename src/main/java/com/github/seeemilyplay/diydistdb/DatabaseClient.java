@@ -1,5 +1,8 @@
 package com.github.seeemilyplay.diydistdb;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +11,13 @@ import java.util.List;
  */
 public class DatabaseClient {
     public static void main( String[] args ) throws Exception {
+        Logger logger = LogManager.getLogger(DatabaseClient.class);
         Node[] nodes = new Node[]{
                 new Node("http://localhost:8080"),
                 new Node("http://localhost:8081"),
                 new Node("http://localhost:8082")
         };
-        DatabaseClient databaseClient = new DatabaseClient(new ReturnMostRecent(), nodes, 2, 2);
+        DatabaseClient databaseClient = new DatabaseClient(logger, new ReturnMostRecent(), nodes, 2, 2);
 
         databaseClient.write(new Thing(3, "foo"));
         databaseClient.write(new Thing(7, "bar"));
@@ -23,12 +27,14 @@ public class DatabaseClient {
         System.out.println(thing7);
     }
 
+    private final Logger logger;
     private final Resolver resolver;
     private final Node[] nodes;
     private final int writeConsistency;
     private final int readConsistency;
 
-    public DatabaseClient(Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
+    public DatabaseClient(Logger logger, Resolver resolver, Node[] nodes, int writeConsistency, int readConsistency) {
+        this.logger = logger;
         this.resolver = resolver;
         this.nodes = nodes;
         this.writeConsistency = writeConsistency;
@@ -42,8 +48,7 @@ public class DatabaseClient {
                 node.putThing(thing);
                 successCount++;
             } catch(Exception e) {
-                System.out.printf("Could not write thing %s to %s\n", thing, node.getUrl());
-
+                logger.debug(String.format("Could not write thing %s to %s", thing, node.getUrl()));
             }
         }
         if (successCount < writeConsistency) {
@@ -63,7 +68,7 @@ public class DatabaseClient {
                 results.add(thing);
                 successCount++;
             } catch(Exception e) {
-                System.out.printf("Could not read thing with %d from %s\n", id, node.getUrl());
+                logger.debug(String.format("Could not read thing with %d from %s", id, node.getUrl()));
             }
         }
         if (successCount < readConsistency) {
