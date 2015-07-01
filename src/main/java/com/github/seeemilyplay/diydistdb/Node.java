@@ -38,4 +38,8 @@ public class Node {
         ClientResponse<Thing> res = req.post(Thing.class);
         return res.getEntity();
     }
+
+    public String getUrl() {
+        return url;
+    }
 }
