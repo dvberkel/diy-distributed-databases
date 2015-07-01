@@ -29,9 +29,27 @@ public class MainTest {
         assertThat(main.read(ANY_ID), is(thing));
     }
 
+    @Test
+    public void shouldSuccessfullyReadThingWithOneOfThreesNodesDownAndReadConsistencyTwo() throws Exception {
+        Thing thing = new Thing(1, "foo", 0L);
+        Node node1 = mockedNodeThatReturns(thing);
+        Node node2 = mockedNodeThatThrowsException();
+        Node node3 = mockedNodeThatReturns(thing);
+
+        Main main = new Main(resolver, new Node[]{ node1, node2, node3 }, 3, 2);
+
+        assertThat(main.read(ANY_ID), is(thing));
+    }
+
     private Node mockedNodeThatReturns(Thing thing) throws Exception {
         Node node = mock(Node.class);
         when(node.getThing(ANY_ID)).thenReturn(thing);
+        return node;
+    }
+
+    private Node mockedNodeThatThrowsException() throws Exception {
+        Node node = mock(Node.class);
+        when(node.getThing(ANY_ID)).thenThrow(new Exception("thrown by a mock"));
         return node;
     }
 }
