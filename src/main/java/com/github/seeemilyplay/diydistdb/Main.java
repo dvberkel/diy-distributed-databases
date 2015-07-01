@@ -14,8 +14,8 @@ public class Main {
 
         main.write(nodeUrls, new Thing(3, "foo"));
         main.write(nodeUrls, new Thing(7, "bar"));
-        Thing thing3 = read(nodeUrls, 3);
-        Thing thing7 = read(nodeUrls, 7);
+        Thing thing3 = main.read(nodeUrls, 3);
+        Thing thing7 = main.read(nodeUrls, 7);
         System.out.println(thing3);
         System.out.println(thing7);
     }
@@ -44,7 +44,7 @@ public class Main {
     }
 
 
-    public static Thing read(String[] nodeUrls, int id) throws Exception {
+    public Thing read(String[] nodeUrls, int id) throws Exception {
         //todo: only works with one node, need to make distributed!
         return Node.getThing(nodeUrls[0], id);
     }
