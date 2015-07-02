@@ -18,6 +18,6 @@ public class CommandLineParser {
         if (matcher2.matches()) {
             return new PutCommand(new Thing(Integer.valueOf(matcher2.group(1)), matcher2.group(2)));
         }
-        return null;
+        return new NOOPCommand();
     }
 }

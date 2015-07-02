@@ -38,6 +38,7 @@ public class CommandLineParserTest {
         data.add(new Object[]{ "GET 456", new GetCommand(456)});
         data.add(new Object[]{ "put 789 foo", new PutCommand(new Thing(789, "foo"))});
         data.add(new Object[]{ "PUT 12 BAR", new PutCommand(new Thing(12, "BAR"))});
+        data.add(new Object[]{ "unknown command", new NOOPCommand()});
         return data;
     }
 }
