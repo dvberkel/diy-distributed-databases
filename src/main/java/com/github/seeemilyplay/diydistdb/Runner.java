@@ -8,12 +8,15 @@ import com.github.seeemilyplay.diydistdb.ui.CommandLineParser;
 import com.github.seeemilyplay.diydistdb.ui.command.Command;
 import com.github.seeemilyplay.diydistdb.ui.result.Result;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Runner {
-    public static void main( String[] args ) throws Exception {
+    public static void main( String[] args ) {
+        Logger logger = LogManager.getLogger(Runner.class);
         Node[] nodes = new Node[]{
                 new Node("http://localhost:8080"),
                 new Node("http://localhost:8081"),
@@ -27,12 +30,23 @@ public class Runner {
         CommandLineParser parser = new CommandLineParser();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String line;
+        String line = "";
         do {
             System.out.print("> ");
-            line = reader.readLine();
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
+                logger.debug(String.format("error while reading line: %s", e.getMessage()));
+                continue;
+            }
             Command command = parser.parse(line);
-            Result result = command.executeOn(databaseClient);
+            Result result = null;
+            try {
+                result = command.executeOn(databaseClient);
+            } catch (Exception e) {
+                logger.debug(String.format("error while executing command: %s", e.getMessage()));
+                continue;
+            }
             result.report();
         } while(!line.equalsIgnoreCase("quit"));
     }
