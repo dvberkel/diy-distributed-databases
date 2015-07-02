@@ -8,4 +8,9 @@ public class WriteResult implements Result {
     public WriteResult(Thing thing) {
         this.thing = thing;
     }
+
+    @Override
+    public void report() {
+        System.out.printf("Successfully wrote %s\n", thing);
+    }
 }

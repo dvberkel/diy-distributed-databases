@@ -8,4 +8,9 @@ public class ReadResult implements Result {
     public ReadResult(Thing thing) {
         this.thing = thing;
     }
+
+    @Override
+    public void report() {
+        System.out.printf("Successfully read %s\n", thing);
+    }
 }
