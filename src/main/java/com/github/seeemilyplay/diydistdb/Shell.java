@@ -1,7 +1,6 @@
 package com.github.seeemilyplay.diydistdb;
 
 import com.github.seeemilyplay.diydistdb.connection.Node;
-import com.github.seeemilyplay.diydistdb.model.Thing;
 import com.github.seeemilyplay.diydistdb.repair.AlwaysRepair;
 import com.github.seeemilyplay.diydistdb.resolve.ReturnMostRecent;
 import com.github.seeemilyplay.diydistdb.ui.CommandLineParser;
@@ -14,9 +13,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Runner {
+public class Shell {
     public static void main( String[] args ) {
-        Logger logger = LogManager.getLogger(Runner.class);
+        Logger logger = LogManager.getLogger(Shell.class);
         Node[] nodes = new Node[]{
                 new Node("http://localhost:8080"),
                 new Node("http://localhost:8081"),

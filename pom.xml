@@ -57,7 +57,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.github.seeemilyplay.diydistdb.Runner</mainClass>
+              <mainClass>com.github.seeemilyplay.diydistdb.Shell</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
