@@ -1,4 +1,4 @@
-package com.github.seeemilyplay.diydistdb.ui;
+package com.github.seeemilyplay.diydistdb.ui.command;
 
 import com.github.seeemilyplay.diydistdb.model.Thing;
 

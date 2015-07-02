@@ -1,4 +1,4 @@
-package com.github.seeemilyplay.diydistdb.ui;
+package com.github.seeemilyplay.diydistdb.ui.command;
 
 public class GetCommand implements Command {
     private final int id;

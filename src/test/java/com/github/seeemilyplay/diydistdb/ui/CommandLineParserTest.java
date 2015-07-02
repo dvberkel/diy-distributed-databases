@@ -1,6 +1,10 @@
 package com.github.seeemilyplay.diydistdb.ui;
 
 import com.github.seeemilyplay.diydistdb.model.Thing;
+import com.github.seeemilyplay.diydistdb.ui.command.Command;
+import com.github.seeemilyplay.diydistdb.ui.command.GetCommand;
+import com.github.seeemilyplay.diydistdb.ui.command.NOOPCommand;
+import com.github.seeemilyplay.diydistdb.ui.command.PutCommand;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
