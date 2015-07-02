@@ -1,8 +1,15 @@
 package com.github.seeemilyplay.diydistdb.ui.command;
 
+import com.github.seeemilyplay.diydistdb.DatabaseClient;
 import com.github.seeemilyplay.diydistdb.ui.command.Command;
+import com.github.seeemilyplay.diydistdb.ui.result.Result;
 
 public class NOOPCommand implements Command {
+    @Override
+    public Result executeOn(DatabaseClient client) throws Exception {
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

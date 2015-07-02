@@ -1,12 +1,19 @@
 package com.github.seeemilyplay.diydistdb.ui.command;
 
+import com.github.seeemilyplay.diydistdb.DatabaseClient;
 import com.github.seeemilyplay.diydistdb.model.Thing;
+import com.github.seeemilyplay.diydistdb.ui.result.Result;
 
 public class PutCommand implements Command {
     private final Thing thing;
 
     public PutCommand(Thing thing) {
         this.thing = thing;
+    }
+
+    @Override
+    public Result executeOn(DatabaseClient client) throws Exception {
+        return null;
     }
 
     @Override
