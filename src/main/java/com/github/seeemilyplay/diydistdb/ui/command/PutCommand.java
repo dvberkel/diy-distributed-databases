@@ -3,6 +3,7 @@ package com.github.seeemilyplay.diydistdb.ui.command;
 import com.github.seeemilyplay.diydistdb.DatabaseClient;
 import com.github.seeemilyplay.diydistdb.model.Thing;
 import com.github.seeemilyplay.diydistdb.ui.result.Result;
+import com.github.seeemilyplay.diydistdb.ui.result.WriteResult;
 
 public class PutCommand implements Command {
     private final Thing thing;
@@ -13,7 +14,8 @@ public class PutCommand implements Command {
 
     @Override
     public Result executeOn(DatabaseClient client) throws Exception {
-        return null;
+        client.write(thing);
+        return new WriteResult(thing);
     }
 
     @Override
