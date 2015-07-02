@@ -4,7 +4,13 @@ import com.github.seeemilyplay.diydistdb.connection.Node;
 import com.github.seeemilyplay.diydistdb.model.Thing;
 import com.github.seeemilyplay.diydistdb.repair.AlwaysRepair;
 import com.github.seeemilyplay.diydistdb.resolve.ReturnMostRecent;
+import com.github.seeemilyplay.diydistdb.ui.CommandLineParser;
+import com.github.seeemilyplay.diydistdb.ui.command.Command;
+import com.github.seeemilyplay.diydistdb.ui.result.Result;
 import org.apache.logging.log4j.LogManager;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Runner {
     public static void main( String[] args ) throws Exception {
@@ -18,12 +24,16 @@ public class Runner {
                 new AlwaysRepair(LogManager.getLogger(AlwaysRepair.class)),
                 new ReturnMostRecent(),
                 nodes, 2, 2);
+        CommandLineParser parser = new CommandLineParser();
 
-        databaseClient.write(new Thing(3, "foo"));
-        databaseClient.write(new Thing(7, "bar"));
-        Thing thing3 = databaseClient.read(3);
-        Thing thing7 = databaseClient.read(7);
-        System.out.println(thing3);
-        System.out.println(thing7);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        do {
+            System.out.print("> ");
+            line = reader.readLine();
+            Command command = parser.parse(line);
+            Result result = command.executeOn(databaseClient);
+            result.report();
+        } while(!line.equalsIgnoreCase("quit"));
     }
 }
