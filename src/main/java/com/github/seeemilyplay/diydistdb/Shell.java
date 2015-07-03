@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Shell {
+    public static final String QUIT_COMMAND = "quit";
+
     public static void main( String[] args ) {
         Logger logger = LogManager.getLogger(Shell.class);
         Node[] nodes = new Node[]{
@@ -36,8 +38,10 @@ public class Shell {
                 line = reader.readLine();
             } catch (IOException e) {
                 logger.debug(String.format("error while reading line: %s", e.getMessage()));
+                line = QUIT_COMMAND;
                 continue;
             }
+            if (line.equalsIgnoreCase(QUIT_COMMAND)) { break; }
             Command command = parser.parse(line);
             Result result = null;
             try {
@@ -47,6 +51,6 @@ public class Shell {
                 continue;
             }
             result.report();
-        } while(!line.equalsIgnoreCase("quit"));
+        } while(true);
     }
 }
